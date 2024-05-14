@@ -41,3 +41,41 @@
 
 - Boolean:
     - either true or false
+
+
+## Arrays - Fixed Length List
+
+- Array initialization: `var arr [3]int32`
+
+    - 0 indexed initialization
+    - initally all values would be 0 by default
+    - python like slicing
+    - &arr[0] is the memory location
+
+
+## Slices - Variable Length List
+
+- Slices as a data structure are wrappers around arrays
+
+    - initalization: `var slice []int32`
+    - a slice doesn't take a size
+    - insert element at the end of the slice: `slice = append(slice, num)`
+    - insert multiple elements at the end of the slice: `slice1 = append(slice1, slice2...)`
+    - the `...` is called the spread operator and unpacks the value in a container
+    - `len(slice)` -> to fetch the current length of the slice (active elements)
+    - `cap(slice)` -> to fetch the current capacity of the slice (possible number of elements before capacity reallocation)
+    - if `append()` is called and the length is equal to the capacity, the capacity is doubled and the new element is appended
+ 
+
+ ## Maps
+
+- Initalization: `var cache map[string]uint8 = make(map[string]uint8)`
+
+- Initialization with values: `var cache = map[string]uint8{"name": dhruv, "age":24}`
+
+- Accessing a map will always return something even if the key does not exist.
+    - the default value is returned based on the datatype of the value. 0 for int.
+    - a second value is returned when a map is accessed which is true if the key exists or false otherwise
+
+- Deleting from a map:
+    - `delete(cache, "age")` this does not return a new map
