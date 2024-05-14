@@ -79,3 +79,17 @@
 
 - Deleting from a map:
     - `delete(cache, "age")` this does not return a new map
+
+ ## String
+
+ - string are immutable in go
+
+ - strings are byte arrays of the UTF-8 character represention forming the string
+
+ - indexing a string returns the UTF-8 value of the character at the index
+
+ - len(string) results in the number of bytes the character uses
+
+ - a forloop based string concatenation is inefficient as it creates a new string at each iteration
+
+ -  instead use `string.Builder.WriteString()` from the string package in go. This appends each character to the existing builder and at the end a new string is created. This is much more efficient than the generic += concatenation.
