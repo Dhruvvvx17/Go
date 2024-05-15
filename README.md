@@ -67,7 +67,7 @@
     - if `append()` is called and the length is equal to the capacity, the capacity is doubled and the new element is appended
  
 
- ## Maps
+## Maps
 
 - Initalization: `var cache map[string]uint8 = make(map[string]uint8)`
 
@@ -80,7 +80,7 @@
 - Deleting from a map:
     - `delete(cache, "age")` this does not return a new map
 
- ## String
+## String
 
  - string are immutable in go
 
@@ -92,4 +92,16 @@
 
  - a forloop based string concatenation is inefficient as it creates a new string at each iteration
 
- -  instead use `string.Builder.WriteString()` from the string package in go. This appends each character to the existing builder and at the end a new string is created. This is much more efficient than the generic += concatenation.
+ -  instead use `string.Builder.WriteString()` from the string package in go. This appends each character to the existing builder and at the end a new string is created. This is much more efficient than the generic += concatenation
+
+## Pointers
+
+- Same as pointers in C/C++. `var *p int32` is a pointer to a memory address which stores an `int32`
+
+- Technically in go, the above statement initally points to `nil` and has to call the `new()` method to point to a real location
+
+- `var *p int32 = new(int32)` now p points to a real location and the value at that location can be set by `*p = 5`
+
+- for p to point to the location of an existing variable, use `p = &i`
+
+- by passing an array to a function using its memory address `&` and then referencing that with a `*p` in the function allows operating right over the original array and save memory by not making duplicates for every function call 
