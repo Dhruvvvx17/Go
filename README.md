@@ -105,3 +105,23 @@
 - for p to point to the location of an existing variable, use `p = &i`
 
 - by passing an array to a function using its memory address `&` and then referencing that with a `*p` in the function allows operating right over the original array and save memory by not making duplicates for every function call 
+
+## Go Routines
+
+- GO routines are a way to launch multiple functions and have them execute concurrently
+
+- Concurrency is not the same as parallelism. Concurrency is context switching between the CPU so it doesn't stay idle while waiting on some action. The base CPU is still a single resource.
+
+- Parallelism is when multiple CPUs are executing multiple tasks in parallel.
+
+## Mutex
+
+- When using GO routines, if different routines are trying to modify the same data structure, it might lead to some inconsistency in the results.
+
+- Mutex are a way to prevent this. Mutex are locks that can guard a database read/write statement so that if multiple GO routines are to access it, only one can secure the lock and proceed while others have to wait until the lock is unlocked.
+
+- `import sync` then create `var m = sync.Mutex{}`
+
+- Now use `m.Lock()` and `m.Unlock()` around the statement that is to be protected.
+
+- Another type of lock offered is the read-write mutex. `var m = sync.RWMutex{}` this enables routines to access a shared variable for read access but not for any writes until a different routine completes the write and unlocking the mutex.
