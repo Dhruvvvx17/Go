@@ -151,3 +151,12 @@
 - Reading from a channel: `var x <- c`
 
 - Creating a channel buffer: `var c = make(chan int, 5)`
+
+## Generics
+
+- A way for GO to implement reusing code for varying datatypes
+
+- to overload a function such that it can accept different datatypes:
+
+    - `func sum[T int | float32](slice []T) T {...}`
+    - Here, the function can accept a slice of either int or float and accordingly return either a int or a float
