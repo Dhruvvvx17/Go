@@ -114,6 +114,14 @@
 
 - Parallelism is when multiple CPUs are executing multiple tasks in parallel.
 
+- To introduce concurrency in the code, identify the statement that can be executed concurrently (eg: waiting for a DB query response) and prefix it with the keyword `go`.
+
+- Next, `import sync` and create a wait group `var wg = sync.WaitGroup{}`. Write before calling the GO routine, add the statement `wg.Add(1)` so the program keeps track of a pending routine.
+
+- In the concurrent method itself, use `wg.Done()` at the end to mark that the current GO routine has finished execution. 
+
+- To prevent the program flow from exiting while pending routines exists, use `wg.Wait()`. This checks the number of routines pending (as we increment each time calling `wg.Add(1)`) and proceed only after all routines are completed.
+
 ## Mutex
 
 - When using GO routines, if different routines are trying to modify the same data structure, it might lead to some inconsistency in the results.
@@ -125,3 +133,21 @@
 - Now use `m.Lock()` and `m.Unlock()` around the statement that is to be protected.
 
 - Another type of lock offered is the read-write mutex. `var m = sync.RWMutex{}` this enables routines to access a shared variable for read access but not for any writes until a different routine completes the write and unlocking the mutex.
+
+## Channels
+
+- A way to enable GO routines to pass around information. The main features are:
+
+    - They hold data - int, string, slice, etc.
+
+    - They are thread safe - avoid data races when reading and writing from memory.
+
+    - The code can listen for data addition/removal to/from a channel and execute code accrodingly.
+
+- Creating a channel: `var c = make(chan int)`
+
+- Adding a data into channel: `c <- 5`
+
+- Reading from a channel: `var x <- c`
+
+- Creating a channel buffer: `var c = make(chan int, 5)`
